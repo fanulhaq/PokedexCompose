@@ -32,15 +32,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.google.accompanist.coil.CoilImage
 import com.muchi.pokedex.R
 import com.muchi.pokedex.data.remote.models.PokedexListEntry
 import com.muchi.pokedex.presentation.ui.theme.RobotoCondensed
 
 @Composable
 fun PokemonListScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: PokemonListViewModel = hiltViewModel()
 ) {
     Surface(
         color = MaterialTheme.colors.background,
@@ -61,7 +63,7 @@ fun PokemonListScreen(
                     .fillMaxWidth()
                     .padding(16.dp)
             ) {
-
+                viewModel.searchPokemonList(it)
             }
             Spacer(modifier = Modifier.height(16.dp))
             PokemonList(navController = navController)
@@ -94,7 +96,7 @@ fun SearchBar(
                 .background(Color.White, CircleShape)
                 .padding(horizontal = 20.dp, vertical = 12.dp)
                 .onFocusChanged {
-                    isHintDisplay = !it.isFocused
+                    isHintDisplay = (!it.isFocused && text.isEmpty())
                 }
         )
 
@@ -117,6 +119,7 @@ fun PokemonList(
     val endReached by remember { viewModel.endReached }
     val loadError by remember { viewModel.loadError }
     val isLoading by remember { viewModel.isLoading }
+    val isSearching by remember { viewModel.isSearching }
 
     LazyColumn(contentPadding = PaddingValues(16.dp)) {
         val itemCount = if(pokemonList.size % 2 == 0) {
@@ -125,7 +128,7 @@ fun PokemonList(
             pokemonList.size / 2 + 1
         }
         items(itemCount) {
-            if(it >= itemCount - 1 && !endReached) {
+            if(it >= itemCount - 1 && !endReached && !isLoading && !isSearching) {
                 viewModel.loadPokemonPaginated()
             }
             PokedexRow(rowIndex = it, entries = pokemonList, navController = navController)
@@ -178,26 +181,39 @@ fun PokedexEntry(
             }
     ) {
         Column {
-            CoilImage(
-                request = ImageRequest.Builder(LocalContext.current)
+            val painter = rememberAsyncImagePainter(
+                model = ImageRequest.Builder(LocalContext.current)
                     .data(entry.imageUrl)
-                    .target {
-                        viewModel.calcDominantColor(it) { color ->
-                            dominantColor = color
-                        }
-                    }
-                    .build(),
-                contentDescription = entry.pokemonName,
-                fadeIn = true,
-                modifier = Modifier
-                    .size(120.dp)
-                    .align(CenterHorizontally)
+                    .crossfade(true)
+                    .build()
+            )
+
+            val state = painter.state
+
+            Box(
+                contentAlignment = Center,
+                modifier = Modifier.fillMaxWidth()
             ) {
-                CircularProgressIndicator(
-                    color = MaterialTheme.colors.primary,
-                    modifier = Modifier.scale(0.5f)
+                if (state is AsyncImagePainter.State.Loading || state is AsyncImagePainter.State.Error) {
+                    CircularProgressIndicator(
+                        color = MaterialTheme.colors.primary,
+                        modifier = Modifier.scale(0.5f)
+                    )
+                }
+
+                Image(
+                    painter = painter,
+                    contentDescription = entry.pokemonName,
+                    modifier = Modifier.size(120.dp)
                 )
             }
+
+            if (state is AsyncImagePainter.State.Success) {
+                viewModel.calcDominantColor(state.result.drawable) { color ->
+                    dominantColor = color
+                }
+            }
+
             Text(
                 text = entry.pokemonName,
                 fontFamily = RobotoCondensed,
