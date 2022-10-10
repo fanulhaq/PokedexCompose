@@ -4,9 +4,9 @@
 
 package com.muchi.pokedex.di
 
+import com.muchi.pokedex.common.Constants.BASE_URL
 import com.muchi.pokedex.data.remote.PokemonApi
 import com.muchi.pokedex.data.repository.PokemonRepository
-import com.muchi.pokedex.common.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

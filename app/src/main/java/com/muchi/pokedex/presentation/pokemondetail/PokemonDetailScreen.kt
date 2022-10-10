@@ -98,7 +98,7 @@ fun PokemonDetailScreen(
             contentAlignment = Alignment.TopCenter,
             modifier = Modifier.fillMaxSize()
         ) {
-            if(pokemonInfo is Resource.Success) {
+            if (pokemonInfo is Resource.Success) {
                 pokemonInfo.data?.sprites?.let {
                     AsyncImage(
                         model = it.frontDefault,
@@ -149,7 +149,7 @@ fun PokemonDetailStateWrapper(
     modifier: Modifier = Modifier,
     loadingModifier: Modifier = Modifier
 ) {
-    when(pokemonInfo) {
+    when (pokemonInfo) {
         is Resource.Loading -> {
             CircularProgressIndicator(
                 color = MaterialTheme.colors.primary,
@@ -212,7 +212,7 @@ fun PokemonTypeSection(types: List<Type>) {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(16.dp)
     ) {
-        for(type in types) {
+        for (type in types) {
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
@@ -302,7 +302,7 @@ fun PokemonStat(
 ) {
     var animationPlayed by remember { mutableStateOf(false) }
     val curPercent = animateFloatAsState(
-        targetValue = if(animationPlayed) {
+        targetValue = if (animationPlayed) {
             statValue / statMaxValue.toFloat()
         } else 0f,
         animationSpec = tween(
@@ -367,7 +367,7 @@ fun PokemonBaseStats(
         )
         Spacer(modifier = Modifier.height(6.dp))
 
-        for(i in pokemonInfo.stats.indices) {
+        for (i in pokemonInfo.stats.indices) {
             val stat = pokemonInfo.stats[i]
             PokemonStat(
                 statName = parseStatToAbbr(stat),

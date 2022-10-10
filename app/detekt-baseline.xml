@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ComplexCondition:PokemonListScreen.kt$(it &gt;= itemCount - 1) &amp;&amp; !endReached &amp;&amp; !isLoading &amp;&amp; !isSearching</ID>
+    <ID>ComplexMethod:PokemonParse.kt$fun parseTypeToColor(type: Type): Color</ID>
+    <ID>FunctionNaming:PokemonDetailScreen.kt$@Composable fun PokemonBaseStats( pokemonInfo: Pokemon, animDelayPerItem: Int = 100 )</ID>
+    <ID>FunctionNaming:PokemonDetailScreen.kt$@Composable fun PokemonDetailDataItem( dataValue: Float, dataUnit: String, dataIcon: Painter, modifier: Modifier = Modifier )</ID>
+    <ID>FunctionNaming:PokemonDetailScreen.kt$@Composable fun PokemonDetailDataSection( pokemonWeight: Int, pokemonHeight: Int, sectionHeight: Dp = 80.dp )</ID>
+    <ID>FunctionNaming:PokemonDetailScreen.kt$@Composable fun PokemonDetailScreen( dominantColor: Color, pokemonName: String, navController: NavController, topPadding: Dp = 20.dp, pokemonImageSize: Dp = 200.dp, viewModel: PokemonDetailViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:PokemonDetailScreen.kt$@Composable fun PokemonDetailSection( pokemonInfo: Pokemon, modifier: Modifier = Modifier )</ID>
+    <ID>FunctionNaming:PokemonDetailScreen.kt$@Composable fun PokemonDetailStateWrapper( pokemonInfo: Resource&lt;Pokemon&gt;, modifier: Modifier = Modifier, loadingModifier: Modifier = Modifier )</ID>
+    <ID>FunctionNaming:PokemonDetailScreen.kt$@Composable fun PokemonDetailTopSection( navController: NavController, modifier: Modifier = Modifier )</ID>
+    <ID>FunctionNaming:PokemonDetailScreen.kt$@Composable fun PokemonStat( statName: String, statValue: Int, statMaxValue: Int, statColor: Color, height: Dp = 28.dp, animDuration: Int = 1000, animDelay: Int = 0 )</ID>
+    <ID>FunctionNaming:PokemonDetailScreen.kt$@Composable fun PokemonTypeSection(types: List&lt;Type&gt;)</ID>
+    <ID>FunctionNaming:PokemonListScreen.kt$@Composable fun PokedexEntry( entry: PokedexListEntry, navController: NavController, modifier: Modifier = Modifier, viewModel: PokemonListViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:PokemonListScreen.kt$@Composable fun PokedexRow( rowIndex: Int, entries: List&lt;PokedexListEntry&gt;, navController: NavController )</ID>
+    <ID>FunctionNaming:PokemonListScreen.kt$@Composable fun PokemonList( navController: NavController, viewModel: PokemonListViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:PokemonListScreen.kt$@Composable fun PokemonListScreen( navController: NavController )</ID>
+    <ID>FunctionNaming:PokemonListScreen.kt$@Composable fun RetrySection( error: String, onRetry: () -&gt; Unit )</ID>
+    <ID>FunctionNaming:PokemonListScreen.kt$@Composable fun SearchBar( modifier: Modifier = Modifier, hint: String = "", viewModel: PokemonListViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:Theme.kt$@Composable fun PokedexTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -&gt; Unit)</ID>
+    <ID>LongMethod:PokemonDetailScreen.kt$@Composable fun PokemonDetailScreen( dominantColor: Color, pokemonName: String, navController: NavController, topPadding: Dp = 20.dp, pokemonImageSize: Dp = 200.dp, viewModel: PokemonDetailViewModel = hiltViewModel() )</ID>
+    <ID>LongMethod:PokemonListScreen.kt$@Composable fun PokedexEntry( entry: PokedexListEntry, navController: NavController, modifier: Modifier = Modifier, viewModel: PokemonListViewModel = hiltViewModel() )</ID>
+    <ID>LongParameterList:PokemonDetailScreen.kt$( dominantColor: Color, pokemonName: String, navController: NavController, topPadding: Dp = 20.dp, pokemonImageSize: Dp = 200.dp, viewModel: PokemonDetailViewModel = hiltViewModel() )</ID>
+    <ID>LongParameterList:PokemonDetailScreen.kt$( statName: String, statValue: Int, statMaxValue: Int, statColor: Color, height: Dp = 28.dp, animDuration: Int = 1000, animDelay: Int = 0 )</ID>
+    <ID>MagicNumber:Color.kt$0.063f</ID>
+    <ID>MagicNumber:Color.kt$0.44f</ID>
+    <ID>MagicNumber:Color.kt$0.55f</ID>
+    <ID>MagicNumber:Color.kt$0.57f</ID>
+    <ID>MagicNumber:Color.kt$0.66f</ID>
+    <ID>MagicNumber:Color.kt$0.671f</ID>
+    <ID>MagicNumber:Color.kt$0.7f</ID>
+    <ID>MagicNumber:Color.kt$0.8f</ID>
+    <ID>MagicNumber:Color.kt$0xFF6390F0</ID>
+    <ID>MagicNumber:Color.kt$0xFF6F35FC</ID>
+    <ID>MagicNumber:Color.kt$0xFF705746</ID>
+    <ID>MagicNumber:Color.kt$0xFF735797</ID>
+    <ID>MagicNumber:Color.kt$0xFF7AC74C</ID>
+    <ID>MagicNumber:Color.kt$0xFF96D9D6</ID>
+    <ID>MagicNumber:Color.kt$0xFFA33EA1</ID>
+    <ID>MagicNumber:Color.kt$0xFFA6B91A</ID>
+    <ID>MagicNumber:Color.kt$0xFFA8A77A</ID>
+    <ID>MagicNumber:Color.kt$0xFFA98FF3</ID>
+    <ID>MagicNumber:Color.kt$0xFFAAAAAA</ID>
+    <ID>MagicNumber:Color.kt$0xFFB6A136</ID>
+    <ID>MagicNumber:Color.kt$0xFFB7B7CE</ID>
+    <ID>MagicNumber:Color.kt$0xFFBAC7FF</ID>
+    <ID>MagicNumber:Color.kt$0xFFC22E28</ID>
+    <ID>MagicNumber:Color.kt$0xFFD685AD</ID>
+    <ID>MagicNumber:Color.kt$0xFFE2BF65</ID>
+    <ID>MagicNumber:Color.kt$0xFFEE8130</ID>
+    <ID>MagicNumber:Color.kt$0xFFF5FF00</ID>
+    <ID>MagicNumber:Color.kt$0xFFF7D02C</ID>
+    <ID>MagicNumber:Color.kt$0xFFF95587</ID>
+    <ID>MagicNumber:PokemonDetailScreen.kt$0.2f</ID>
+    <ID>MagicNumber:PokemonDetailScreen.kt$0xFF505050</ID>
+    <ID>MagicNumber:PokemonDetailScreen.kt$1000f</ID>
+    <ID>MagicNumber:PokemonDetailScreen.kt$100f</ID>
+    <ID>MagicNumber:PokemonDetailScreen.kt$20</ID>
+    <ID>MagicNumber:PokemonListScreen.kt$0.5f</ID>
+    <ID>MagicNumber:Theme.kt$0xFF101010</ID>
+    <ID>MagicNumber:Theme.kt$0xFF303030</ID>
+    <ID>MaxLineLength:PokemonListViewModel.kt$PokemonListViewModel$val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$number.png"</ID>
+    <ID>SwallowedException:PokemonRepository.kt$PokemonRepository$e: Exception</ID>
+    <ID>TooGenericExceptionCaught:PokemonRepository.kt$PokemonRepository$e: Exception</ID>
+    <ID>WildcardImport:PokemonDetailScreen.kt$import androidx.compose.foundation.*</ID>
+    <ID>WildcardImport:PokemonDetailScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:PokemonDetailScreen.kt$import androidx.compose.runtime.*</ID>
+    <ID>WildcardImport:PokemonListScreen.kt$import androidx.compose.foundation.layout.*</ID>
+    <ID>WildcardImport:PokemonListScreen.kt$import androidx.compose.material.*</ID>
+    <ID>WildcardImport:PokemonListScreen.kt$import androidx.compose.runtime.*</ID>
+    <ID>WildcardImport:PokemonParse.kt$import com.muchi.pokedex.presentation.ui.theme.*</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -4,9 +4,7 @@
 
 package com.muchi.pokedex.data.remote.responses
 
-
 import com.google.gson.annotations.SerializedName
-import com.muchi.pokedex.data.remote.responses.Ability
 
 data class Pokemon(
     val abilities: List<Ability>,

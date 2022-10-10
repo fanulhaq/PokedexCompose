@@ -11,7 +11,7 @@ import com.muchi.pokedex.presentation.ui.theme.*
 import java.util.*
 
 fun parseTypeToColor(type: Type): Color {
-    return when(type.type.name.lowercase(Locale.ROOT)) {
+    return when (type.type.name.lowercase(Locale.ROOT)) {
         "normal" -> TypeNormal
         "fire" -> TypeFire
         "water" -> TypeWater
@@ -35,7 +35,7 @@ fun parseTypeToColor(type: Type): Color {
 }
 
 fun parseStatToColor(stat: Stat): Color {
-    return when(stat.stat.name.lowercase()) {
+    return when (stat.stat.name.lowercase()) {
         "hp" -> HPColor
         "attack" -> AtkColor
         "defense" -> DefColor
@@ -47,7 +47,7 @@ fun parseStatToColor(stat: Stat): Color {
 }
 
 fun parseStatToAbbr(stat: Stat): String {
-    return when(stat.stat.name.lowercase()) {
+    return when (stat.stat.name.lowercase()) {
         "hp" -> "HP"
         "attack" -> "Atk"
         "defense" -> "Def"
