@@ -41,8 +41,7 @@ import com.muchi.pokedex.presentation.ui.theme.RobotoCondensed
 
 @Composable
 fun PokemonListScreen(
-    navController: NavController,
-    viewModel: PokemonListViewModel = hiltViewModel()
+    navController: NavController
 ) {
     Surface(
         color = MaterialTheme.colors.background,
@@ -62,9 +61,7 @@ fun PokemonListScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-            ) {
-                viewModel.searchPokemonList(it)
-            }
+            )
             Spacer(modifier = Modifier.height(16.dp))
             PokemonList(navController = navController)
         }
@@ -75,17 +72,16 @@ fun PokemonListScreen(
 fun SearchBar(
     modifier: Modifier = Modifier,
     hint: String = "",
-    onSearch: (String) -> Unit = {}
+    viewModel: PokemonListViewModel = hiltViewModel()
 ) {
-    var text by remember { mutableStateOf("") }
+    val text by remember { viewModel.textSearch }
     var isHintDisplay by remember { mutableStateOf( hint != "") }
 
     Box(modifier = modifier) {
         BasicTextField(
             value = text,
             onValueChange = {
-                text = it
-                onSearch(it)
+                viewModel.searchPokemonList(it)
             },
             maxLines = 1,
             singleLine = true,
