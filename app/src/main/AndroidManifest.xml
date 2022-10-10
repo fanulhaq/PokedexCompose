@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".PokedexApplication"
@@ -17,7 +16,7 @@
         android:theme="@style/Theme.Pokedex"
         tools:targetApi="31">
         <activity
-            android:name=".ui.screen.MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Pokedex">
             <intent-filter>

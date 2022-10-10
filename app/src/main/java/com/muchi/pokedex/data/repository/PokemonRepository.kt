@@ -7,7 +7,7 @@ package com.muchi.pokedex.data.repository
 import com.muchi.pokedex.data.remote.PokemonApi
 import com.muchi.pokedex.data.remote.responses.Pokemon
 import com.muchi.pokedex.data.remote.responses.PokemonList
-import com.muchi.pokedex.utils.Resource
+import com.muchi.pokedex.common.Resource
 import dagger.hilt.android.scopes.ActivityScoped
 import javax.inject.Inject
 

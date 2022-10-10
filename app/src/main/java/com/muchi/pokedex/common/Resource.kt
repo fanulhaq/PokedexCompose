@@ -2,7 +2,7 @@
  * Copyright (c)  - Irfanul Haq
  */
 
-package com.muchi.pokedex.utils
+package com.muchi.pokedex.common
 
 sealed class Resource<T>(val data: T? = null, val message: String? = null) {
     class Success<T>(data: T) : Resource<T>(data)

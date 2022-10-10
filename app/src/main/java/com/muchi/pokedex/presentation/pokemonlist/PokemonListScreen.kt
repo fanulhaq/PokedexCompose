@@ -2,19 +2,17 @@
  * Copyright (c)  - Irfanul Haq
  */
 
-package com.muchi.pokedex.ui.screen.pokemonlist
+package com.muchi.pokedex.presentation.pokemonlist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -38,7 +36,7 @@ import coil.request.ImageRequest
 import com.google.accompanist.coil.CoilImage
 import com.muchi.pokedex.R
 import com.muchi.pokedex.data.remote.models.PokedexListEntry
-import com.muchi.pokedex.ui.theme.RobotoCondensed
+import com.muchi.pokedex.presentation.ui.theme.RobotoCondensed
 
 @Composable
 fun PokemonListScreen(
@@ -65,6 +63,8 @@ fun PokemonListScreen(
             ) {
 
             }
+            Spacer(modifier = Modifier.height(16.dp))
+            PokemonList(navController = navController)
         }
     }
 }
@@ -75,12 +75,8 @@ fun SearchBar(
     hint: String = "",
     onSearch: (String) -> Unit = {}
 ) {
-    var text by remember {
-        mutableStateOf("")
-    }
-    var isHintDisplay by remember {
-        mutableStateOf( hint != "")
-    }
+    var text by remember { mutableStateOf("") }
+    var isHintDisplay by remember { mutableStateOf( hint != "") }
 
     Box(modifier = modifier) {
         BasicTextField(
@@ -113,6 +109,45 @@ fun SearchBar(
 }
 
 @Composable
+fun PokemonList(
+    navController: NavController,
+    viewModel: PokemonListViewModel = hiltViewModel()
+) {
+    val pokemonList by remember { viewModel.pokemonList }
+    val endReached by remember { viewModel.endReached }
+    val loadError by remember { viewModel.loadError }
+    val isLoading by remember { viewModel.isLoading }
+
+    LazyColumn(contentPadding = PaddingValues(16.dp)) {
+        val itemCount = if(pokemonList.size % 2 == 0) {
+            pokemonList.size / 2
+        } else {
+            pokemonList.size / 2 + 1
+        }
+        items(itemCount) {
+            if(it >= itemCount - 1 && !endReached) {
+                viewModel.loadPokemonPaginated()
+            }
+            PokedexRow(rowIndex = it, entries = pokemonList, navController = navController)
+        }
+    }
+
+    Box(
+        contentAlignment = Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        if(isLoading) {
+            CircularProgressIndicator(color = MaterialTheme.colors.primary)
+        }
+        if(loadError.isNotEmpty()) {
+            RetrySection(error = loadError) {
+                viewModel.loadPokemonPaginated()
+            }
+        }
+    }
+}
+
+@Composable
 fun PokedexEntry(
     entry: PokedexListEntry,
     navController: NavController,
@@ -120,9 +155,7 @@ fun PokedexEntry(
     viewModel: PokemonListViewModel = hiltViewModel()
 ) {
     val defaultDominantColor = MaterialTheme.colors.surface
-    var dominantColor by remember {
-        mutableStateOf(defaultDominantColor)
-    }
+    var dominantColor by remember { mutableStateOf(defaultDominantColor) }
 
     Box(
         contentAlignment = Center,
@@ -201,5 +234,22 @@ fun PokedexRow(
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@Composable
+fun RetrySection(
+    error: String,
+    onRetry: () -> Unit
+) {
+    Column {
+        Text(text = error, color = Color.Red, fontSize = 18.sp)
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(
+            onClick = { onRetry() },
+            modifier = Modifier.align(CenterHorizontally)
+        ) {
+            Text(text = "Retry")
+        }
     }
 }

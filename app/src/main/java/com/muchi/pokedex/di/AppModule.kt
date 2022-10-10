@@ -6,7 +6,7 @@ package com.muchi.pokedex.di
 
 import com.muchi.pokedex.data.remote.PokemonApi
 import com.muchi.pokedex.data.repository.PokemonRepository
-import com.muchi.pokedex.utils.Constants.BASE_URL
+import com.muchi.pokedex.common.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,12 +21,6 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providePokemonRepository(
-        api: PokemonApi
-    ) = PokemonRepository(api)
-
-    @Singleton
-    @Provides
     fun providePokemonApi(): PokemonApi {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -34,4 +28,10 @@ class AppModule {
             .build()
             .create(PokemonApi::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun providePokemonRepository(
+        api: PokemonApi
+    ) = PokemonRepository(api)
 }

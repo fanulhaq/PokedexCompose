@@ -2,7 +2,7 @@
  * Copyright (c)  - Irfanul Haq
  */
 
-package com.muchi.pokedex.ui.screen
+package com.muchi.pokedex.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,8 +14,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.muchi.pokedex.ui.screen.pokemonlist.PokemonListScreen
-import com.muchi.pokedex.ui.theme.PokedexTheme
+import com.muchi.pokedex.presentation.pokemonlist.PokemonListScreen
+import com.muchi.pokedex.presentation.ui.theme.PokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

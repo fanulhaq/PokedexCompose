@@ -2,7 +2,7 @@
  * Copyright (c)  - Irfanul Haq
  */
 
-package com.muchi.pokedex.ui.theme
+package com.muchi.pokedex.presentation.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
